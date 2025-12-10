@@ -22,8 +22,8 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Feedback BMU',
-  description: 'Sistem Pengaduan Kritik dan Saran PT. Brawijaya Multi Usaha',
+  title: 'Portal BMU',
+  description: 'Sistem Otentikasi Terpadu untuk BMU',
   icons: {
     icon: '/img/favicon.svg',
     shortcut: '/img/favicon.svg',

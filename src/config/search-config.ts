@@ -102,3 +102,9 @@ export const RoleSearchConfig = {
   searchButtonText: 'Search',
   resetButtonText: 'Reset'
 }
+
+export const ClientAppSearchConfig = {
+  placeholder: 'Cari berdasarkan nama aplikasi, clientId, atau URL...',
+  searchButtonText: 'Search',
+  resetButtonText: 'Reset'
+}

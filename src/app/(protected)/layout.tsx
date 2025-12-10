@@ -27,9 +27,8 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
     if (pathname.startsWith('/admin')) {
       isAuthorized = user.role === 'Admin'
     } else if (pathname.startsWith('/user')) {
-      isAuthorized = USER_ROLES.includes(user.role)
+      isAuthorized = user.role !== 'Admin' && USER_ROLES.includes(user.role)
     } else if (pathname.startsWith('/account')) {
-      // Semua pengguna yang sudah login (user !== null) boleh mengakses /account
       isAuthorized = true
     }
     // ------------------------------------
@@ -45,7 +44,6 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
     return <DynamicSkeleton variant="fullPageLoader" loaderText="Memuat Sesi..." />
   }
 
-  // --- PERBAIKAN LOGIKA RENDER ---
   // Tampilkan konten hanya jika sudah selesai loading DAN diotorisasi
   const isUserAuthorized =
     (pathname.startsWith('/admin') && user.role === 'Admin') ||

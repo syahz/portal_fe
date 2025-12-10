@@ -8,12 +8,12 @@ import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { Chrome, Eye, EyeOff } from 'lucide-react'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { LoginValidation, type LoginFormValues } from '@/features/auth/login/components/validation/LoginValidation'
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { Chrome, Eye, EyeOff } from 'lucide-react'
 
 export function LoginForm({ className, ...props }: React.ComponentProps<'form'>) {
   const router = useRouter()

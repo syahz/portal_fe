@@ -29,7 +29,7 @@ export function EditParticipantForm({ userId, onSuccess }: EditParticipantFormPr
   const { data: rolesData, isLoading: isLoadingRoles } = useGetAllRoles()
   const { data: unitsData, isLoading: isLoadingUnits } = useGetAllUnits()
   const { data: divisionsData, isLoading: isLoadingDivisions } = useGetAllDivisions()
-
+  console.log('divisionsData:', divisionsData)
   const updateParticipant = useUpdateParticipant(userId)
 
   const roles = rolesData?.data || []
@@ -156,7 +156,7 @@ export function EditParticipantForm({ userId, onSuccess }: EditParticipantFormPr
               />
               <FormField
                 control={form.control}
-                name="roleId"
+                name="divisionId"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Divisi</FormLabel>
