@@ -1,11 +1,11 @@
 'use client'
 
 import { DataTable } from '@/components/table/DataTable'
-import type { UserAppAccessExpandedResponse } from '@/types/api/userAppAccess'
+import type { UserAppAccessExpanded } from '@/types/api/userAppAccess'
 import { Table } from '@tanstack/react-table'
 
 interface Props {
-  table: Table<UserAppAccessExpandedResponse>
+  table: Table<UserAppAccessExpanded>
   isLoading: boolean
   isFetching: boolean
   error?: Error | null
