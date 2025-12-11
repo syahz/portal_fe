@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://api.portalbmuconnect.id/api/:path*'
+        destination: 'https://api.portal.bmuconnect.id/api/:path*'
       }
     ]
   }
