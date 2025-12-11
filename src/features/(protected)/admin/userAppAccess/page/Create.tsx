@@ -19,7 +19,7 @@ export default function CreateUserAppAccessPage() {
             toast.success('Akses pengguna berhasil dibuat')
             router.push('/admin/user-app-access')
           } catch (err) {
-            const msg = err && typeof err === 'object' && 'message' in (err as any) ? (err as any).message : 'Gagal membuat akses'
+            const msg = err && typeof err === 'object' && 'message' in err ? err.message : 'Gagal membuat akses'
             toast.error(msg as string)
           }
         }}
