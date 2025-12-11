@@ -1,7 +1,7 @@
 import { normalizePaginatedResponse } from '@/lib/apiTableHelper'
 import axiosInstance from '@/lib/axios'
 import type { ApiError, PaginatedResponse, RawPaginatedResponse } from '@/types/api/api'
-import type { CreateClientAppRequest, UpdateClientAppRequest, ClientAppResponse, ClientApp } from '@/types/api/clientApp'
+import type { CreateClientAppRequest, UpdateClientAppRequest, ClientApp } from '@/types/api/clientApp'
 
 export async function getClientApps(params?: { page?: number; limit?: number; search?: string }): Promise<PaginatedResponse<ClientApp>> {
   try {
@@ -12,27 +12,27 @@ export async function getClientApps(params?: { page?: number; limit?: number; se
   }
 }
 
-export async function getClientAppById(id: string): Promise<ClientAppResponse> {
+export async function getClientAppById(id: string): Promise<ClientApp> {
   try {
-    const response = await axiosInstance.get<ClientAppResponse>(`/admin/apps/${id}`)
+    const response = await axiosInstance.get<ClientApp>(`/admin/apps/${id}`)
     return response.data
   } catch (error: unknown) {
     throw normalizeError(error, 'FETCH_CLIENT_APP_ERROR', 'Failed to fetch client app')
   }
 }
 
-export async function createClientApp(payload: CreateClientAppRequest): Promise<ClientAppResponse> {
+export async function createClientApp(payload: CreateClientAppRequest): Promise<ClientApp> {
   try {
-    const response = await axiosInstance.post<ClientAppResponse>('/admin/apps', payload)
+    const response = await axiosInstance.post<ClientApp>('/admin/apps', payload)
     return response.data
   } catch (error: unknown) {
     throw normalizeError(error, 'CREATE_CLIENT_APP_ERROR', 'Failed to create client app')
   }
 }
 
-export async function updateClientApp(id: string, payload: UpdateClientAppRequest): Promise<ClientAppResponse> {
+export async function updateClientApp(id: string, payload: UpdateClientAppRequest): Promise<ClientApp> {
   try {
-    const response = await axiosInstance.patch<ClientAppResponse>(`/admin/apps/${id}`, payload)
+    const response = await axiosInstance.patch<ClientApp>(`/admin/apps/${id}`, payload)
     return response.data
   } catch (error: unknown) {
     throw normalizeError(error, 'UPDATE_CLIENT_APP_ERROR', 'Failed to update client app')
