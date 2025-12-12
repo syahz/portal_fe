@@ -3,11 +3,10 @@ import { z } from 'zod'
 export const CreateClientAppSchema = z.object({
   name: z.string().min(2, 'Nama minimal 2 karakter'),
   description: z.string().max(500, 'Deskripsi maksimal 500 karakter'),
-  logoUrl: z.url('URL logo tidak valid').optional(),
-  clientId: z.string().min(3, 'Client ID minimal 3 karakter'),
-  clientSecret: z.string().min(6, 'Client Secret minimal 6 karakter'),
-  redirectUri: z.url('Redirect URI harus URL yang valid'),
-  dashboardUrl: z.url('Dashboard URL harus URL yang valid')
+  client_id: z.string().min(3, 'Client ID minimal 3 karakter'),
+  client_secret: z.string().min(6, 'Client Secret minimal 6 karakter'),
+  redirect_uri: z.url('Redirect URI harus URL yang valid'),
+  dashboard_url: z.url('Dashboard URL harus URL yang valid')
 })
 
 export const EditClientAppSchema = CreateClientAppSchema.partial()

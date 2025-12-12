@@ -1,12 +1,12 @@
 'use client'
 
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { CreateClientAppSchema, type CreateClientAppFormValues } from '../validation/ClientAppValidation'
+import { useForm } from 'react-hook-form'
 import type { CreateClientAppRequest } from '@/types/api/clientApp'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { CreateClientAppSchema, type CreateClientAppFormValues } from '../validation/ClientAppValidation'
 
 export function CreateClientAppForm({
   onSubmit,
@@ -20,11 +20,10 @@ export function CreateClientAppForm({
     defaultValues: {
       name: '',
       description: '',
-      logoUrl: '',
-      clientId: '',
-      clientSecret: '',
-      redirectUri: '',
-      dashboardUrl: ''
+      client_id: '',
+      client_secret: '',
+      redirect_uri: '',
+      dashboard_url: ''
     }
   })
 
@@ -61,21 +60,7 @@ export function CreateClientAppForm({
 
         <FormField
           control={form.control}
-          name="logoUrl"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Logo URL</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="clientId"
+          name="client_id"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Client ID</FormLabel>
@@ -89,7 +74,7 @@ export function CreateClientAppForm({
 
         <FormField
           control={form.control}
-          name="clientSecret"
+          name="client_secret"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Client Secret</FormLabel>
@@ -103,7 +88,7 @@ export function CreateClientAppForm({
 
         <FormField
           control={form.control}
-          name="redirectUri"
+          name="redirect_uri"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Redirect URI</FormLabel>
@@ -117,7 +102,7 @@ export function CreateClientAppForm({
 
         <FormField
           control={form.control}
-          name="dashboardUrl"
+          name="dashboard_url"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Dashboard URL</FormLabel>

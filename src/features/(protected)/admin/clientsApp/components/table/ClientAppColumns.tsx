@@ -1,9 +1,10 @@
 'use client'
 
+import { truncateText } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
+import type { ClientApp } from '@/types/api/clientApp'
 import { ArrowUpDown } from 'lucide-react'
 import { ColumnDef } from '@tanstack/react-table'
-import type { ClientApp } from '@/types/api/clientApp'
 import { ClientAppActionCell } from '@/features/(protected)/admin/clientsApp/components/table/ClientAppActionCell'
 
 export const ClientAppColumns: ColumnDef<ClientApp>[] = [
@@ -16,12 +17,14 @@ export const ClientAppColumns: ColumnDef<ClientApp>[] = [
       </Button>
     ),
     cell: ({ row }) => <span className="font-medium">{row.original.name}</span>,
-    meta: { className: 'sticky left-0 bg-card z-10 min-w-[250px]' }
+    meta: { className: 'sticky left-0 bg-card z-10 min-w-[100px]' }
   },
-  { accessorKey: 'clientId', header: 'Client ID' },
-  { accessorKey: 'redirectUri', header: 'Redirect URI' },
-  { accessorKey: 'dashboardUrl', header: 'Dashboard URL' },
-  { accessorKey: 'logoUrl', header: 'Logo' },
+  {
+    accessorKey: 'description',
+    header: 'Description',
+    cell: ({ row }) => <span>{truncateText(row.original.description, 60)}</span>
+  },
+  { accessorKey: 'redirect_uri', header: 'Redirect URI' },
   {
     id: 'actions',
     header: 'Actions',

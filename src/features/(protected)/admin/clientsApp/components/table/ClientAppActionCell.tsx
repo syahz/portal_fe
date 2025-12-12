@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { toast } from 'sonner'
-import { useRouter } from 'next/navigation'
 import { useDeleteClientApp } from '@/hooks/api/useClientApp'
 import { DataTableRowActions } from '@/components/table/DataTableRowActions'
 import {
@@ -26,7 +25,6 @@ interface Props {
 export function ClientAppActionCell({ appId, appName }: Props) {
   const [openDelete, setOpenDelete] = useState(false)
   const [openEdit, setOpenEdit] = useState(false)
-  const router = useRouter()
   const del = useDeleteClientApp()
 
   const handleDeleteConfirm = () => {
@@ -49,12 +47,12 @@ export function ClientAppActionCell({ appId, appName }: Props) {
 
   return (
     <>
-      <DataTableRowActions row={{ id: appId }} onEdit={() => router.push(`/admin/clients-apps/${appId}/edit`)} onDelete={() => setOpenDelete(true)} />
+      <DataTableRowActions row={{ id: appId }} onEdit={() => setOpenEdit(true)} onDelete={() => setOpenDelete(true)} />
       {/* modal edit */}
       <Dialog open={openEdit} onOpenChange={setOpenEdit}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Edit Divisi</DialogTitle>
+            <DialogTitle>Edit Client App</DialogTitle>
           </DialogHeader>
           {openEdit && <EditClientAppForm key={appId} appId={appId} onSuccess={() => setOpenEdit(false)} />}
         </DialogContent>

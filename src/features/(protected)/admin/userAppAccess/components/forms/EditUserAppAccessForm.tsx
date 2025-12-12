@@ -183,7 +183,7 @@ export function EditUserAppAccessForm({ accessId, onSuccess }: EditUserAppAccess
                       const q = appSearch.toLowerCase()
                       return (
                         a.name.toLowerCase().includes(q) ||
-                        String(a.clientId ?? '')
+                        String(a.client_id ?? '')
                           .toLowerCase()
                           .includes(q)
                       )

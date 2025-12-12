@@ -28,24 +28,22 @@ export function EditClientAppForm({ appId, onSuccess }: EditClientAppFormProps) 
     defaultValues: {
       name: '',
       description: '',
-      logoUrl: '',
-      clientId: '',
-      clientSecret: '',
-      redirectUri: '',
-      dashboardUrl: ''
+      client_id: '',
+      client_secret: '',
+      redirect_uri: '',
+      dashboard_url: ''
     }
   })
 
   useEffect(() => {
     if (appData) {
       form.reset({
-        name: appData.name,
-        description: appData.description || '',
-        logoUrl: appData.logoUrl || '',
-        clientId: appData.clientId,
-        clientSecret: appData.clientSecret,
-        redirectUri: appData.redirectUri,
-        dashboardUrl: appData.dashboardUrl
+        name: appData.name ?? '',
+        description: appData.description ?? '',
+        client_id: appData.client_id ?? '',
+        client_secret: appData.client_secret ?? '',
+        redirect_uri: appData.redirect_uri ?? '',
+        dashboard_url: appData.dashboard_url ?? ''
       })
 
       setIsFormReady(true)
@@ -62,7 +60,7 @@ export function EditClientAppForm({ appId, onSuccess }: EditClientAppFormProps) 
     updateClientApp.mutateAsync(values, {
       onSuccess: () => {
         toast.success('Aplikasi klien berhasil diperbarui!')
-        router.push('/admin/clients-app')
+        router.push('/admin/clients-apps')
         onSuccess?.()
       },
       onError: (error: unknown) => {
@@ -71,7 +69,7 @@ export function EditClientAppForm({ appId, onSuccess }: EditClientAppFormProps) 
             ? error.message
             : typeof error === 'object' && error && 'message' in error
               ? (error as { message?: string }).message
-              : 'Gagal memperbarui divisi'
+              : 'Gagal memperbarui client app'
         toast.error(message)
       }
     })
@@ -110,21 +108,7 @@ export function EditClientAppForm({ appId, onSuccess }: EditClientAppFormProps) 
 
         <FormField
           control={form.control}
-          name="logoUrl"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Logo URL</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="clientId"
+          name="client_id"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Client ID</FormLabel>
@@ -138,7 +122,7 @@ export function EditClientAppForm({ appId, onSuccess }: EditClientAppFormProps) 
 
         <FormField
           control={form.control}
-          name="clientSecret"
+          name="client_secret"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Client Secret</FormLabel>
@@ -152,7 +136,7 @@ export function EditClientAppForm({ appId, onSuccess }: EditClientAppFormProps) 
 
         <FormField
           control={form.control}
-          name="redirectUri"
+          name="redirect_uri"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Redirect URI</FormLabel>
@@ -166,7 +150,7 @@ export function EditClientAppForm({ appId, onSuccess }: EditClientAppFormProps) 
 
         <FormField
           control={form.control}
-          name="dashboardUrl"
+          name="dashboard_url"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Dashboard URL</FormLabel>

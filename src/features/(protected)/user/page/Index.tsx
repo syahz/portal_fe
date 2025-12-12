@@ -75,7 +75,7 @@ const UserAppsPage = () => {
                 {app.description && <CardDescription>{app.description}</CardDescription>}
               </CardHeader>
               <div className="px-6 pb-6">
-                <Button onClick={() => handleOpenApp(app.id, app.dashboardUrl, app.clientId)} className="w-full">
+                <Button onClick={() => handleOpenApp(app.id, app.dashboard_url, app.client_id)} className="w-full">
                   Buka {app.name}
                 </Button>
               </div>

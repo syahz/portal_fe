@@ -1,6 +1,6 @@
 import { normalizePaginatedResponse } from '@/lib/apiTableHelper'
 import axiosInstance from '@/lib/axios'
-import type { ApiError, PaginatedResponse, RawPaginatedResponse } from '@/types/api/api'
+import type { ApiError, ApiResponse, PaginatedResponse, RawPaginatedResponse } from '@/types/api/api'
 import type { CreateClientAppRequest, UpdateClientAppRequest, ClientApp } from '@/types/api/clientApp'
 
 export async function getClientApps(params?: { page?: number; limit?: number; search?: string }): Promise<PaginatedResponse<ClientApp>> {
@@ -14,8 +14,8 @@ export async function getClientApps(params?: { page?: number; limit?: number; se
 
 export async function getClientAppById(id: string): Promise<ClientApp> {
   try {
-    const response = await axiosInstance.get<ClientApp>(`/admin/apps/${id}`)
-    return response.data
+    const response = await axiosInstance.get<ApiResponse<ClientApp>>(`/admin/apps/${id}`)
+    return response.data.data
   } catch (error: unknown) {
     throw normalizeError(error, 'FETCH_CLIENT_APP_ERROR', 'Failed to fetch client app')
   }
@@ -32,7 +32,7 @@ export async function createClientApp(payload: CreateClientAppRequest): Promise<
 
 export async function updateClientApp(id: string, payload: UpdateClientAppRequest): Promise<ClientApp> {
   try {
-    const response = await axiosInstance.patch<ClientApp>(`/admin/apps/${id}`, payload)
+    const response = await axiosInstance.put<ClientApp>(`/admin/apps/${id}`, payload)
     return response.data
   } catch (error: unknown) {
     throw normalizeError(error, 'UPDATE_CLIENT_APP_ERROR', 'Failed to update client app')
